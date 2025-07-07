@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    container_name: nest-postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: nest
+      POSTGRES_PASSWORD: nest
+      POSTGRES_DB: diagnosisdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:6
+    restart: always
+    container_name: nest-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodata:/data/db
+
+  redis:
+    image: redis:alpine
+    restart: always
+    container_name: nest-redis
+    ports:
+      - '6379:6379'
+
+volumes:
+  pgdata:
+  mongodata:
